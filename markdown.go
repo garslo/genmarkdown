@@ -18,3 +18,7 @@ func (me Nodes) Markdown() io.Reader {
 	}
 	return buf
 }
+
+func (me *Nodes) Add(n Node) {
+	*me = append(*me, n)
+}
