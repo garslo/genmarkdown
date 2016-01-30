@@ -3,7 +3,6 @@ package genmarkdown
 import (
 	"bytes"
 	"io"
-	"os"
 )
 
 type Node interface {
@@ -18,13 +17,4 @@ func (me Nodes) Markdown() io.Reader {
 		io.Copy(buf, node.Markdown())
 	}
 	return buf
-}
-
-type Emitter struct {
-	Nodes Nodes
-}
-
-func (me Emitter) Emit() error {
-	io.Copy(os.Stdout, me.Nodes.Markdown())
-	return nil
 }
