@@ -49,7 +49,7 @@ func main() {
 
 Output:
 
-<pre>```
+<pre>
 # Heading 1
 
 This is some text in a paragraph.
@@ -66,4 +66,4 @@ fmt.Sprintf()
 | ---   | ---   |
 | row11 | row12 |
 | row21 | row22 |
-```</pre>
+</pre>
