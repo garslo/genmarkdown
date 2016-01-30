@@ -9,7 +9,12 @@ Code:
 ```go
 package main
 
-import "github.com/garslo/genmarkdown"
+import (
+	"io"
+	"os"
+
+	"github.com/garslo/genmarkdown"
+)
 
 func main() {
 	tbl := genmarkdown.Table{
@@ -19,31 +24,29 @@ func main() {
 			genmarkdown.Row{[]string{"row21", "row22"}},
 		},
 	}
-	e := genmarkdown.Emitter{
-		Nodes: genmarkdown.Nodes{
-			genmarkdown.Heading{
-				Text:  "Heading 1",
-				Level: 1,
-			},
-			genmarkdown.Paragraph{
-				Text: "This is some text in a paragraph.",
-			},
-			genmarkdown.Heading{
-				Text:  "Heading 2",
-				Level: 2,
-			},
-			genmarkdown.CodeBlock{
-				Language: "go",
-				Code:     "fmt.Sprintf()",
-			},
-			genmarkdown.Heading{
-				Text:  "Heading 4",
-				Level: 4,
-			},
-			tbl,
+	nodes := genmarkdown.Nodes{
+		genmarkdown.Heading{
+			Text:  "Heading 1",
+			Level: 1,
 		},
+		genmarkdown.Paragraph{
+			Text: "This is some text in a paragraph.",
+		},
+		genmarkdown.Heading{
+			Text:  "Heading 2",
+			Level: 2,
+		},
+		genmarkdown.CodeBlock{
+			Language: "go",
+			Code:     "fmt.Sprintf()",
+		},
+		genmarkdown.Heading{
+			Text:  "Heading 4",
+			Level: 4,
+		},
+		tbl,
 	}
-	e.Emit()
+	io.Copy(os.Stdout, nodes.Markdown())
 }
 ```
 
