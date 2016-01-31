@@ -6,15 +6,17 @@ import (
 	"strings"
 )
 
+// Paragraph represents a markdown paragraph. All lines in the
+// rendered paragraph will have length <= MaxLineLength; each
+// paragraph will have an empty line at the end.
 type Paragraph struct {
 	Text string
 }
 
+// Maximum length of each paragraph line.
 const MaxLineLength = 80
 
-// Markdown implements the Node interface. It ensures that all lines
-// are <= 80 characters in length and that each paragraph will have an
-// empty line at the end
+// Markdown implements the Node interface.
 func (me Paragraph) Markdown() io.Reader {
 	buf := &bytes.Buffer{}
 	chunked := strings.Fields(me.Text)

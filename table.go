@@ -7,17 +7,19 @@ import (
 	"text/tabwriter"
 )
 
+// Row represents a table row.
 type Row struct {
 	Values []string
 }
 
+// Table represents a markdown table. The table will be formatted in a
+// human-friendly manner; all rows are aligned and padded properly.
 type Table struct {
 	Columns []string
 	Rows    []Row
 }
 
-// Markdown implements the Node interface. It formats the table in a
-// human-friendly manner; all rows are aligned and padded properly.
+// Markdown implements the Node interface.
 func (me Table) Markdown() io.Reader {
 	buf := &bytes.Buffer{}
 	w := tabwriter.NewWriter(buf, 1, 4, 0, ' ', 0)
