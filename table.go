@@ -16,6 +16,8 @@ type Table struct {
 	Rows    []Row
 }
 
+// Markdown implements the Node interface. It formats the table in a
+// human-friendly manner; all rows are aligned and padded properly.
 func (me Table) Markdown() io.Reader {
 	buf := &bytes.Buffer{}
 	w := tabwriter.NewWriter(buf, 1, 4, 0, ' ', 0)

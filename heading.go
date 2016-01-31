@@ -10,6 +10,8 @@ type Heading struct {
 	Level int
 }
 
+// Markdown implements the Node interface. The Level indicates the
+// number of leading '#' characters.
 func (me Heading) Markdown() io.Reader {
 	buf := &bytes.Buffer{}
 	for i := 0; i < me.Level; i++ {
